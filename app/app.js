@@ -3,14 +3,14 @@ Ext.application({
     
     autoCreateViewport: true,
     
-    models: ['Location', 'Trial', 'Lap'],    
-    stores: ['Trials', 'RecentLaps', 'LocationSearchResults'],
+    models: ['Location', 'Trial', 'TrialResult', 'Lap', 'Driver'],    
+    stores: ['Trials', 'RecentLaps', 'LocationSearchResults', 'TrialResults'],
     controllers: ['Trial', 'Lap']
 });
 
 
 Ext.Loader.setConfig({enabled:true});
 
-var interval = setInterval(function() {    var store = Ext.StoreMgr.lookup('RecentLaps');
+var interval = setInterval(function() {    var store = Ext.StoreMgr.lookup('TrialResults');
 	store.load();
-}, 6000);
+}, 10000);

@@ -34,7 +34,7 @@ Ext.define('RaceRecord.controller.Trial', {
             },            
             scope: this 
         });
-    
+        
         
         //selModel = this.getLocationsList().select(locationsStore.last());
         
@@ -55,6 +55,8 @@ Ext.define('RaceRecord.controller.Trial', {
      
         var trialsList = this.getTrialsList();
         trialsList.getSelectionModel().select(0);
+        
+        
     },
     
     onTrialSelect: function(selModel, selection) {
@@ -64,6 +66,8 @@ Ext.define('RaceRecord.controller.Trial', {
         
         Ext.Msg.alert('Debug','Inside onTrailSelected');
      
+        
+        
         var locationsStore = this.getLocationSearchResultsStore();
         locationsStore.load({
             //callback: this.onEventLocationsLoad,
