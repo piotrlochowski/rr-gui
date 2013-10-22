@@ -51,7 +51,7 @@ Ext.define('RaceRecord.controller.Trial', {
     },
 
     onTrialsLoad: function() {
-        Ext.Msg.alert('Debug','onTrialsLoad ');
+//        Ext.Msg.alert('Debug','onTrialsLoad ');
      
         var trialsList = this.getTrialsList();
         trialsList.getSelectionModel().select(0);
