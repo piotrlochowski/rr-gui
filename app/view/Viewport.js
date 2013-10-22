@@ -17,13 +17,16 @@ Ext.define('RaceRecord.view.Viewport', {
                 dock: 'top',
                 xtype: 'toolbar',
                 height: 80,
-                items: [{
-                    xtype: 'eventlocation',
-                    width: 150
-                //}, {
+                items: [
+//                    {
+//                    xtype: 'eventlocation',
+//                    width: 150
+                //},
+                // {
                 //    xtype: 'songcontrols',
                 //    flex: 1
-                }, {
+//                },
+                    {
                     xtype: 'component',
                     html: 'RaceRecord by GaZiK<br>Live results'
                 }]
@@ -32,19 +35,21 @@ Ext.define('RaceRecord.view.Viewport', {
                 type: 'hbox',
                 align: 'stretch'
             },
-            items: [{
-                width: 250,
-                xtype: 'panel',
-                id: 'west-region',
-                layout: {
-                    type: 'vbox',
-                    align: 'stretch'
-                },
-                items: [{
-                    xtype: 'trialslist',
-                    flex: 1
-                }]
-            }, {
+            items: [
+//                {
+//                width: 250,
+//                xtype: 'panel',
+//                id: 'west-region',
+//                layout: {
+//                    type: 'vbox',
+//                    align: 'stretch'
+//                },
+//                items: [{
+//                    xtype: 'trialslist',
+//                    flex: 1
+//                }]
+//                },
+                {
                 xtype: 'container',
                 flex: 1,
                 layout: {
