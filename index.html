@@ -1,13 +1,38 @@
-<html>
+<!doctype html>
+<html lang="en" ng-app id="ng-app">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title id="page-title">RaceRecord</title>
-
-    <link rel="stylesheet" type="text/css" href="ext-4.0.7/resources/css/ext-all.css">
-    <script type="text/javascript" src="ext-4.0.7/bootstrap.js"></script>
-    <script type="text/javascript" src="app/app.js"></script>
+    <title>Page Title</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+    <script>
+        function PostsCtrlAjax($scope, $http) {
+            $http({method: 'GET', url: '/py/api/v1/trial_driver/?trial=1'}).success(function (data) {
+                $scope.results = data; // response data
+            });
+        }
+    </script>
 </head>
 <body>
+<div id="ng-app" ng-app ng-controller="PostsCtrlAjax">
 
+    <div ng-repeat="result in results.trial_drivers">
+
+        <div class='time'>{{result.last_name}} {{result.first_name}}</div>
+        <p>{{result.trial_id}}</p>
+    </div>
+
+</div>
 </body>
 </html>
+<!--<html>-->
+<!--<head>-->
+<!--<meta http-equiv="Content-Type" content="text/html; charset=utf-8">-->
+<!--<title id="page-title">RaceRecord</title>-->
+
+<!--<link rel="stylesheet" type="text/css" href="ext-4.0.7/resources/css/ext-all.css">-->
+<!--<script type="text/javascript" src="ext-4.0.7/bootstrap.js"></script>-->
+<!--<script type="text/javascript" src="app/app.js"></script>-->
+<!--</head>-->
+<!--<body>-->
+
+<!--</body>-->
+<!--</html>-->

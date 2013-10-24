@@ -3,7 +3,7 @@ Ext.define('RaceRecord.view.Viewport', {
     layout: 'fit',
     
     requires: [
-        'RaceRecord.view.NewLocation',
+        'RaceRecord.view.NewEvent',
         'RaceRecord.view.SongControls',
         'RaceRecord.view.LapsList',
         'RaceRecord.view.TrialsList',
@@ -18,10 +18,10 @@ Ext.define('RaceRecord.view.Viewport', {
                 xtype: 'toolbar',
                 height: 80,
                 items: [
-//                    {
-//                    xtype: 'eventlocation',
-//                    width: 150
-                //},
+                    {
+                    xtype: 'eventslist',
+                    width: 150
+                },
                 // {
                 //    xtype: 'songcontrols',
                 //    flex: 1
@@ -36,19 +36,19 @@ Ext.define('RaceRecord.view.Viewport', {
                 align: 'stretch'
             },
             items: [
-//                {
-//                width: 250,
-//                xtype: 'panel',
-//                id: 'west-region',
-//                layout: {
-//                    type: 'vbox',
-//                    align: 'stretch'
-//                },
-//                items: [{
-//                    xtype: 'trialslist',
-//                    flex: 1
-//                }]
-//                },
+                {
+                width: 250,
+                xtype: 'panel',
+                id: 'west-region',
+                layout: {
+                    type: 'vbox',
+                    align: 'stretch'
+                },
+                items: [{
+                    xtype: 'trialslist',
+                    flex: 1
+                }]
+                },
                 {
                 xtype: 'container',
                 flex: 1,

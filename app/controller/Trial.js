@@ -5,11 +5,11 @@ Ext.define('RaceRecord.controller.Trial', {
         ref: 'trialsList',
         selector: 'trialslist'
         },{
-        ref: 'locationsList',
-        selector: 'eventlocation'
+        ref: 'eventsList',
+        selector: 'eventslist'
         }],
 
-    stores: ['Trials', 'LocationSearchResults'],
+    stores: ['Trials', 'TrialDrivers', 'EventSearchResults'],
     
     init: function() {
         // Start listening for events on views
@@ -17,32 +17,31 @@ Ext.define('RaceRecord.controller.Trial', {
             'trialslist': {
                 selectionchange: this.onTrialSelect
             },
-            'eventlocation': {
-                select: this.onEventLocationSelect,
-                selectionchange: this.onEventLocationSelect
+            'eventlist': {
+                select: this.onEventSelect,
+                selectionchange: this.onEventSelect
             }
         });
     },
     
     onLaunch: function() {
         
-        var locationsStore = this.getLocationSearchResultsStore();
-        locationsStore.load({
-            callback: this.onEventLocationsLoad,
+        var eventsStore = this.getEventSearchResultsStore();
+        eventsStore.load({
             params: {
-                //location: "/py/api/v1/location/"+selection[0].get('id')+"/"
+                //event: "/py/api/v1/event/"+selection[0].get('id')+"/"
             },            
             scope: this 
         });
         
         
-        //selModel = this.getLocationsList().select(locationsStore.last());
+        //selModel = this.getEventsList().select(eventsStore.last());
         
-        var trialsStore = this.getTrialsStore();        
+        var trialsStore = this.getTrialsStore();
         trialsStore.load({
             callback: this.onTrialsLoad,
             params: {
-                //location: "/py/api/v1/location/"+locationsStore.last()+"/"
+                //event: "/py/api/v1/event/"+eventsStore.last()+"/"
             },            
             scope: this
         });
@@ -51,7 +50,7 @@ Ext.define('RaceRecord.controller.Trial', {
     },
 
     onTrialsLoad: function() {
-//        Ext.Msg.alert('Debug','onTrialsLoad ');
+        Ext.Msg.alert('Debug','onTrialsLoad ');
      
         var trialsList = this.getTrialsList();
         trialsList.getSelectionModel().select(0);
@@ -61,31 +60,26 @@ Ext.define('RaceRecord.controller.Trial', {
     
     onTrialSelect: function(selModel, selection) {
         // Fire an application wide event
-        console.log('The station was selected');
-        //this.application.fireEvent('trialstarts', selection[0]);
+        console.log('The station was selected', selection[0].get('id'));
+//        this.application.fireEvent('trialstarts', selection[0]);
         
-        Ext.Msg.alert('Debug','Inside onTrailSelected');
-     
-        
-        
-        var locationsStore = this.getLocationSearchResultsStore();
-        locationsStore.load({
-            //callback: this.onEventLocationsLoad,
+        var trialDriversStore = this.getTrialDriversStore();
+        trialDriversStore.load({
             params: {
-                //location: "/py/api/v1/location/"+selection[0].get('id')+"/"
-            },            
-            scope: this 
+                trial_id: selection[0].get('id')
+            }
         });
+//        this.getTrialsList().getStore().loadData(trialDriversStore)
     },
     
-    onEventLocationSelect: function(field, selection) {
-        Ext.Msg.alert('Debug','Inside onEventLocationSelect');
+    onEventSelect: function(field, selection) {
+        Ext.Msg.alert('Debug','Inside onEventSelect');
      
         var trialsStore = this.getTrialsStore();        
         trialsStore.load({
             callback: this.onTrialsLoad,
             params: {
-                location: "/py/api/v1/location/"+locationsStore.last()+"/"
+                event: "/py/api/v1/event/"+1+"/"
             },            
             scope: this
         });
@@ -99,8 +93,6 @@ Ext.define('RaceRecord.controller.Trial', {
     //    }
     //    list.getSelectionModel().select(selected);
     },
-    
-    onEventLocationsLoad: function(songs, request) {
-    }
+
  
 });
